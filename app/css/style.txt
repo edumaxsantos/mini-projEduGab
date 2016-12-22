@@ -1,0 +1,42 @@
+.center-form {
+  /*background-color: rgba(55, 58, 60, 0.8);*/
+  background-color: rgba(67, 141, 67, 0.9);
+  margin-left: 25%;
+  margin-right: 25%;
+  margin-top: 5px;
+  color: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+}
+
+.center-form label {
+  margin-bottom: 4px;
+  margin-top: 20px;
+}
+
+.row.flex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-group-separate {
+  margin-bottom: 10px;
+  float: right;
+}
+
+.btn-separate {
+  margin-right: 10px;
+}
+
+.btn-cadastro {
+  background-color: rgba(33, 141, 33, 1);
+  border-color: rgba(33, 141, 33, 1);
+}
+
+.btn-cadastro:hover {
+  background-color: rgba(33, 120, 33, 1);
+  border-color: rgba(33, 141, 33, 1);
+}
+
+.btn-limpar {
+  background-color: rgba(150, 150, 255, 1);
+}

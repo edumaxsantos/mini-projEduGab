@@ -29,17 +29,17 @@
                 </li>
             </ul>
         </nav>
-        <div class="container">
+        <div class="container center-form col-md-6">
             <form>
                 <div class="form-group">
-                    <div class="row">
-                        <div class="col-sm-6">
+                    <div class="row centered-form center-block">
+                        <div class="col-md-12">
                             <label for="nomeProd">Nome do Produto:</label>
                             <input type="text" id="nomeProd" class="form-control" required />
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-md-6">
                             <label for="catProd">Categoria:</label>
                             <select class="form-control">
                             <option value="#">Opcao1</option>
@@ -48,15 +48,33 @@
                             <option value="#">Opcao4</option>
                           </select>
                         </div>
-                        <div class="col-sm-2">
+                        <div class="col-md-2">
                             <label for="qtdeProd">Quantidade:</label>
                             <input type="number" id="qtdeProd" class=" form-control" />
                         </div>
+                        <div class="col-md-4">
+                            <label for="dataCompra">Data de Compra:</label>
+                            <input type="date" id="dataCompra" class="form-control" required />
+                        </div>
+                    </div>
+                    <div class="row flex">
 
-
+                        <div class="col-md-4">
+                            <label for="preco">Preço Unitário:</label>
+                            <input type="number" id="preco" class="form-control" min="0.01" placeholder="R$" required />
+                        </div>
+                        <div class="col-md-8">
+                            <label for="fornecedor">Fornecedor:</label>
+                            <input type="text" id="fornecedor" class="form-control" required />
+                        </div>
                     </div>
 
                 </div>
+                <div class="btn-group btn-group-separate">
+                    <button type="submit" class="btn btn-primary btn-separate btn-cadastro">Cadastrar</button>
+                    <button type="button" class="btn btn-info btn-limpar">Limpar Campos</button>
+                </div>
+
             </form>
         </div>
     </body>

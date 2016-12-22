@@ -1,0 +1,55 @@
+$corVerde-form: rgba(67, 141, 67, 0.9);
+$corBranco-letras: rgba(255, 255, 255, 0.9);
+$corVerde-botao: rgba(33, 141, 33, 1);
+$corVerde-botaoHover: rgba(33, 120, 33, 1);
+$corAzul-botao: rgba(150, 150, 255, 1);
+$corAzul-botaoHover: rgba(125, 125, 255, 1);
+
+.center-form {
+  background-color: $corVerde-form;
+  margin-left: 25%;
+  margin-right: 25%;
+  margin-top: 5px;
+  color: $corBranco-letras;
+  border-radius: 10px;
+
+  label {
+    margin-bottom: 4px;
+    margin-top: 20px;
+  }
+}
+
+
+.row.flex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-group-separate {
+  margin-bottom: 10px;
+  float: right;
+}
+
+.btn-separate {
+  margin-right: 10px;
+}
+
+.btn-cadastro {
+  background-color: $corVerde-botao;
+  border-color: $corVerde-botao;
+}
+
+.btn-cadastro:hover {
+  background-color: $corVerde-botaoHover;
+  border-color: $corVerde-botaoHover;
+}
+
+.btn-limpar {
+  background-color: $corAzul-botao;
+  border-color: $corAzul-botao;
+}
+
+.btn-limpar:hover {
+  background-color: $corAzul-botaoHover;
+  border-color: $corAzul-botaoHover;
+}
