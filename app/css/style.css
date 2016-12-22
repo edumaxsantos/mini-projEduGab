@@ -1,0 +1,37 @@
+.center-form {
+  background-color: rgba(67, 141, 67, 0.9);
+  margin-left: 25%;
+  margin-right: 25%;
+  margin-top: 5px;
+  color: rgba(255, 255, 255, 0.9);
+  border-radius: 10px; }
+  .center-form label {
+    margin-bottom: 4px;
+    margin-top: 20px; }
+
+.row.flex {
+  display: flex;
+  justify-content: space-between; }
+
+.btn-group-separate {
+  margin-bottom: 10px;
+  float: right; }
+
+.btn-separate {
+  margin-right: 10px; }
+
+.btn-cadastro {
+  background-color: #218d21;
+  border-color: #218d21; }
+
+.btn-cadastro:hover {
+  background-color: #217821;
+  border-color: #217821; }
+
+.btn-limpar {
+  background-color: #9696ff;
+  border-color: #9696ff; }
+
+.btn-limpar:hover {
+  background-color: #7d7dff;
+  border-color: #7d7dff; }
