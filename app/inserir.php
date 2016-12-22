@@ -13,13 +13,13 @@ $quantidade = addslashes($_POST['quantidade']);
 $data_compra = addslashes($_POST['data_compra']);
 $fornecedor = addslashes($_POST['fornecedor']);
 $preco = addslashes($_POST['preco']);
-
+//var_dump($_POST);
 //Atribui valores ao objeto
 $produto->setId($id);
 $produto->setNome($nome);
 $produto->setCategoria($categoria);
 $produto->setQtd($quantidade);
-$produto->setDataCompra($data_compra);
+$produto->setDataCompra(dataBd($data_compra));
 $produto->setFornecedor($fornecedor);
 $produto->setPreco($preco);
 

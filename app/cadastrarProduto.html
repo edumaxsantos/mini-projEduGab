@@ -9,16 +9,17 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js" integrity="sha384-BLiI7JTZm+JWlgKa0M0kGRpJbF2J8q+qreVrKBC47e3K6BW78kGLrCkeRX6I9RoK" crossorigin="anonymous"></script>
         <link href="css/style.css" rel="stylesheet" />
+        <script src="js/scripts.js"></script>
     </head>
 
-    <body>
+    <body onload="gerarID();">
         <nav class="navbar navbar-dark bg-inverse" role="navigation">
             <ul class="nav navbar-nav">
                 <li class="nav-item"><a href="index.html" class="nav-link">Início</a></li>
                 <li class="nav-item dropdown"><a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Produtos</a>
                     <div class="dropdown-menu">
                         <a href="#" class="dropdown-item">Cadastrar Produto</a>
-                        <a href="#" class="dropdown-item">Procurar Produto</a>
+                        <a href="procurarProduto.html" class="dropdown-item">Procurar Produto</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown"><a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Vendas</a>
@@ -30,42 +31,46 @@
             </ul>
         </nav>
         <div class="container center-form col-md-6">
-            <form>
+            <form id="formulario" action="inserir.php" method="POST">
                 <div class="form-group">
                     <div class="row centered-form center-block">
-                        <div class="col-md-12">
+                        <div class="col-md-3">
+                            <label for="idProd">Código:</label>
+                            <input type="text" id="idProd" name="id" class="form-control" readonly />
+                        </div>
+                        <div class="col-md-9">
                             <label for="nomeProd">Nome do Produto:</label>
-                            <input type="text" id="nomeProd" class="form-control" required />
+                            <input type="text" id="nomeProd" name="nome" class="form-control" required />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <label for="catProd">Categoria:</label>
-                            <select class="form-control">
-                            <option value="#">Opcao1</option>
-                            <option value="#">Opcao2</option>
-                            <option value="#">Opcao3</option>
-                            <option value="#">Opcao4</option>
+                            <label for="categoria">Categoria:</label>
+                            <select class="form-control" id="categoria" name="categoria">
+                            <option value="1">Opcao1</option>
+                            <option value="2">Opcao2</option>
+                            <option value="3">Opcao3</option>
+                            <option value="4">Opcao4</option>
                           </select>
                         </div>
                         <div class="col-md-2">
                             <label for="qtdeProd">Quantidade:</label>
-                            <input type="number" id="qtdeProd" class=" form-control" />
+                            <input type="number" id="qtdeProd" name="quantidade" class=" form-control" />
                         </div>
                         <div class="col-md-4">
                             <label for="dataCompra">Data de Compra:</label>
-                            <input type="date" id="dataCompra" class="form-control" required />
+                            <input type="date" id="dataCompra" name="data_compra" class="form-control" required />
                         </div>
                     </div>
                     <div class="row flex">
 
                         <div class="col-md-4">
                             <label for="preco">Preço Unitário:</label>
-                            <input type="number" id="preco" class="form-control" min="0.01" placeholder="R$" required />
+                            <input type="number" id="preco" name="preco" class="form-control" min="0.01" step="0.01" placeholder="R$" required />
                         </div>
                         <div class="col-md-8">
                             <label for="fornecedor">Fornecedor:</label>
-                            <input type="text" id="fornecedor" class="form-control" required />
+                            <input type="text" id="fornecedor" name="fornecedor" class="form-control" required />
                         </div>
                     </div>
 
@@ -78,13 +83,5 @@
             </form>
         </div>
     </body>
-
-</html>
-
-</body>
-
-</html>
-
-</body>
 
 </html>

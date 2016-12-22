@@ -1,12 +1,12 @@
 <?php
 class Produtos {
-	private $id;
-	private $nome;
-	private $categoria;
-	private $quantidade;
-	private $data_compra;
-	private $fornecedor;
-	private $preco;
+	protected $id;
+	protected $nome;
+	protected $categoria;
+	protected $quantidade;
+	protected $data_compra;
+	protected $fornecedor;
+	protected $preco;
 
 	public function getId() {
         return $this->id;

@@ -1,6 +1,22 @@
 <?php
 require'produtos.php';
 require'conexao.php';
+
+function dataBr($data)
+      {
+          $data = implode('/', array_reverse(explode('-', $data)));
+
+          return $data;
+      }
+      function dataBd($data)
+      {
+          $data = implode('-', array_reverse(explode('/', $data)));
+
+          return $data;
+      }
+
+
+
 class sqlUsuario {
     public static $instance;
 
@@ -54,7 +70,7 @@ class sqlUsuario {
    	public function Editar(Produtos $produto,$id) {
         try {
             $sql = "update produtos set nome = :nome, categoria = :categoria, quantidade = :quantidade, data_compra = :data, fornecedor = :fornecedor, preco = :preco where id = :id";
-        	
+
             $p_sql = Conexao::getInstance()->prepare($sql);
 
             $p_sql->bindValue(":nome", $produto->getNome());
@@ -69,7 +85,7 @@ class sqlUsuario {
         } catch (Exception $e) {
             print "Ocorreu um erro ao tentar executar esta ação, foi gerado um LOG do mesmo, tente novamente mais tarde.";
             GeraLog::getInstance()->inserirLog("Erro: Código: " . $e->getCode() . " Mensagem: " . $e->getMessage());
-        } 
+        }
    	}
 
    	//Medtodo inserir
@@ -86,7 +102,7 @@ class sqlUsuario {
         }
     }
 
-    //Medtodo select 
+    //Medtodo select
     public function Buscar($id) {
         try {
             $sql = "select * from produtos where id = :id";
