@@ -2,20 +2,20 @@
 require'produtos.php';
 require'conexao.php';
 
+//transforma data para data BR
 function dataBr($data)
       {
           $data = implode('/', array_reverse(explode('-', $data)));
 
           return $data;
       }
-      function dataBd($data)
+//transforma data para data do BD
+function dataBd($data)
       {
           $data = implode('-', array_reverse(explode('/', $data)));
 
           return $data;
       }
-
-
 
 class sqlUsuario {
     public static $instance;
@@ -60,10 +60,10 @@ class sqlUsuario {
 
 
             return $p_sql->execute();
-        } catch (Exception $e) {
-            print "Ocorreu um erro ao tentar executar esta ação, foi gerado um LOG do mesmo, tente novamente mais tarde.";
-            GeraLog::getInstance()->inserirLog("Erro: Código: " . $e->getCode() . " Mensagem: " . $e->getMessage());
-        }
+        }catch (Exception $e) {
+              //display custom message
+              return $e->getMessage();
+            }
 	}
 
 	//Medtodo update
@@ -83,9 +83,9 @@ class sqlUsuario {
 
             return $p_sql->execute();
         } catch (Exception $e) {
-            print "Ocorreu um erro ao tentar executar esta ação, foi gerado um LOG do mesmo, tente novamente mais tarde.";
-            GeraLog::getInstance()->inserirLog("Erro: Código: " . $e->getCode() . " Mensagem: " . $e->getMessage());
-        }
+              //display custom message
+              return $e->getMessage();
+            }
    	}
 
    	//Medtodo inserir
@@ -96,10 +96,10 @@ class sqlUsuario {
             $p_sql->bindValue(":id", $id);
 
             return $p_sql->execute();
-        } catch (Exception $e) {
-            print "Ocorreu um erro ao tentar executar esta ação, foi gerado um LOG do mesmo, tente novamente mais tarde.";
-            GeraLog::getInstance()->inserirLog("Erro: Código: " . $e->getCode() . " Mensagem: " . $e->getMessage());
-        }
+        }catch (Exception $e) {
+              //display custom message
+              return $e->getMessage();
+            }
     }
 
     //Medtodo select
@@ -118,9 +118,10 @@ class sqlUsuario {
         	}
 
         } catch (Exception $e) {
-            print "Ocorreu um erro ao tentar executar esta ação, foi gerado um LOG do mesmo, tente novamente mais tarde.";
-            GeraLog::getInstance()->inserirLog("Erro: Código: " . $e->getCode() . " Mensagem: " . $e->getMessage());
-        }
+              //display custom message
+                $r = False;
+                return $r;
+            }
     }
     private function populaUsuario($row) {
         $produto = new Produtos;
