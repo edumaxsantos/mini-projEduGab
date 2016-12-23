@@ -5,22 +5,6 @@ header('Content-Type: text/html; charset=utf-8');
 $produtoSQL = new sqlUsuario();
 $produto = new Produtos();
 
-function objectToArray( $object )
-    {
-        if( !is_object( $object ) && !is_array( $object ) )
-        {
-            return $object;
-        }
-        if( is_object( $object ) )
-        {
-            $object = get_object_vars( $object );
-        }
-				$v = array_map('objectToArray', $object);
-				print_r($v);
-        return $v;
-    }
-
-
 //Pegar com POST
 $id = addslashes($_REQUEST['id']);
 
@@ -31,15 +15,8 @@ $buscar = $produtoSQL->Buscar($id);
 if($buscar){
 	$ar = (array)$buscar;
 	$json = json_encode($ar);
-	$json = explode('\u0000', $json);
-	foreach ($json as $key => $value) {
-		$json[$key] = explode('*', $value);
-	}
-	foreach($json as $key => $value) {
-		$json[$key] = implode('', $value);
-	}
-	$json = implode('',$json);
-
+	$json = str_replace('\u0000', '', $json);
+	$json = str_replace('*', '', $json);
 	echo $json;
 }
 else{
