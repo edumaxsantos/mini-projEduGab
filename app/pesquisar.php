@@ -41,27 +41,9 @@ if($buscar){
 	$json = implode('',$json);
 
 	echo $json;
-/*echo"Nome: ";
-print_r($buscar->getNome());
-echo"<br>";
-echo"Categoria: ";
-print_r($buscar->getCategoria());
-echo"<br>";
-echo"Quantidade: ";
-print_r($buscar->getQtd());
-echo"<br>";
-echo"Data de compra: ";
-print_r($buscar->getDataCompra());
-echo"<br>";
-echo"Fornecedor: ";
-print_r($buscar->getFornecedor());
-echo"<br>";
-echo"Preço: ";
-print_r($buscar->getPreco());
-echo"<br>";
-*/
 }
 else{
-	echo "sem linha";
+	$json = "sem linha";
+	echo json_encode($json);
 }
 ?>
