@@ -24,13 +24,9 @@ $produto->setFornecedor($fornecedor);
 $produto->setPreco($preco);
 
 //Verifica se produto é inserido
-if($produtoSQL->Inserir($produto)){
-	echo"<script> alert('Produto inserido com sucesso!');  history.back();</script>";
-}
-else{
-	echo"<script> alert('Produto não inserido!');  history.back();</script>";
-}
-
+$return = $produtoSQL->Inserir($produto);
+$teste = (substr($return, 0 ,8) ==  "SQLSTATE") ? ("<script> alert('Erro ao inserir, tente novamente');  history.back();</script>") : ("<script> alert('Produto inserido com sucesso!');  history.back();</script>");
+echo $teste;
 /*
 
 //$h = $produto->getNome();
