@@ -35,18 +35,18 @@
                 <div class="form-group">
                     <div class="row centered-form center-block">
                         <div class="col-md-3">
-                            <label for="idProd">Código:</label>
+                            <label class="form-control-label" for="idProd">Código:</label>
                             <input type="text" id="idProd" name="id" class="form-control" readonly />
                         </div>
-                        <div class="col-md-9">
-                            <label for="nomeProd">Nome do Produto:</label>
-                            <input type="text" id="nomeProd" name="nome" class="form-control" required />
+                        <div id="div-nomeProd" class="col-md-9">
+                            <label class="form-control-label" for="nomeProd">Nome do Produto:</label>
+                            <input type="text" id="nomeProd" name="nome" class="form-control" required data-toggle="tooltip" data-placement="top" title="Não deixe em branco." />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <label for="categoria">Categoria:</label>
-                            <select class="form-control" id="categoria" name="categoria">
+                            <label class="form-control-label" for="categoria">Categoria:</label>
+                            <select class="form-control" id="categoria" name="categoria" required>
                             <option value="1">Opcao1</option>
                             <option value="2">Opcao2</option>
                             <option value="3">Opcao3</option>
@@ -54,29 +54,29 @@
                           </select>
                         </div>
                         <div class="col-md-2">
-                            <label for="qtdeProd">Quantidade:</label>
-                            <input type="number" id="qtdeProd" name="quantidade" class=" form-control" />
+                            <label class="form-control-label" for="qtdeProd">Quantidade:</label>
+                            <input type="number" id="qtdeProd" name="quantidade" class=" form-control" min='1' required />
                         </div>
                         <div class="col-md-4">
-                            <label for="dataCompra">Data de Compra:</label>
+                            <label class="form-control-label" for="dataCompra">Data de Compra:</label>
                             <input type="date" id="dataCompra" name="data_compra" class="form-control" required />
                         </div>
                     </div>
                     <div class="row flex">
 
                         <div class="col-md-4">
-                            <label for="preco">Preço Unitário:</label>
+                            <label class="form-control-label" for="preco">Preço Unitário:</label>
                             <input type="number" id="preco" name="preco" class="form-control" min="0.01" step="0.01" placeholder="R$" required />
                         </div>
-                        <div class="col-md-8">
-                            <label for="fornecedor">Fornecedor:</label>
-                            <input type="text" id="fornecedor" name="fornecedor" class="form-control" required />
+                        <div id="div-fornecedor" class="col-md-8">
+                            <label class="form-control-label" for="fornecedor">Fornecedor:</label>
+                            <input type="text" id="fornecedor" name="fornecedor" class="form-control" required data-toggle="tooltip" data-placement="top" title="Não deixe em branco." />
                         </div>
                     </div>
 
                 </div>
                 <div class="btn-group btn-group-separate">
-                    <button type="submit" class="btn btn-primary btn-separate btn-cadastro">Cadastrar</button>
+                    <button type="submit" class="btn btn-primary btn-separate btn-cadastro" id="enviar">Cadastrar</button>
                     <button type="button" class="btn btn-info btn-limpar">Limpar Campos</button>
                 </div>
 
