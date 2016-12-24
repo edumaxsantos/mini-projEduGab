@@ -1,5 +1,7 @@
 <?php
-require'dao.php';
+function __autoload ($class) {
+ require_once("class/".$class.".class.php");
+ }
 header('Content-Type: text/html; charset=utf-8');
 //Cria objetos - comandos sql - atributos do produto
 $produtoSQL = new sqlUsuario();
