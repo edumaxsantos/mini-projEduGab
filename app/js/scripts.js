@@ -32,3 +32,23 @@ function pegarProduto() {
   xhttp.open("GET", "pesquisar.php?id="+id, true);
   xhttp.send();
 }
+
+$( () => {
+  $('[data-toggle="tooltip"]').tooltip();
+  $('form').submit( (evt) => {
+    if ($.trim($('#nomeProd').val()) == '') {
+      evt.preventDefault();
+      window.history.back();
+      $('#nomeProd').addClass('form-control-danger');
+      $('#div-nomeProd').addClass('has-danger');
+
+    }
+    if ($.trim($('#fornecedor').val()) == '') {
+      evt.preventDefault();
+      window.history.back();
+      $('#fornecedor').addClass('form-control-danger');
+      $('#div-fornecedor').addClass('has-danger');
+
+    }
+  });
+});
