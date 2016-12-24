@@ -1,6 +1,8 @@
 <?php
 
-require'dao.php';
+function __autoload ($class) {
+ require_once("class/".$class.".class.php");
+ }
 //Cria objetos - comandos sql - atributos do produto
 $produtoSQL = new sqlUsuario();
 $produto = new Produtos();
