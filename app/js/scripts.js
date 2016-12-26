@@ -41,7 +41,7 @@ function pegarProduto() {
 
 $( () => {
   $('[data-toggle="tooltip"]').tooltip();
-  $('form').submit( (evt) => {
+  $('#formulario').submit( (evt) => {
     if ($.trim($('#nomeProd').val()) == '') {
       evt.preventDefault();
       window.history.back();
@@ -68,8 +68,7 @@ $( () => {
       $('#produtosSalvos').val(novo + '\n' + anterior);
   });
 
-  $('#enviar').submit(function(e) {
-    e.preventDefault();
+  $('#enviar').click(function() {
     var textarea = $('#produtosSalvos').val();
     var texto = textarea.replace(/Produto: /g, '');
     texto = texto.replace(/Qtde: /g, '');
@@ -83,14 +82,8 @@ $( () => {
       dados[i] = {};
       dados[i][key] = parseInt(value);
     }
-    console.log(data);
-    $.ajax({
-      type: "POST",
-      url: "inserirVenda.php",
-      data: dados,
-      success: function() {
-        alert('enviou');
-      }
-    });
+    console.log(dados);
+    $('#hid').val(JSON.stringify(dados));
+    $('#form2').submit();
   });
 });
