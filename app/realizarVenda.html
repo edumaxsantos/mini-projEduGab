@@ -31,26 +31,27 @@
             </ul>
         </nav>
         <div class="container center-form col-md-6">
-            <form id="formulario" action="inserirVenda.php" method="POST">
+            <form id="form2" action="inserirVenda.php" method="POST">
+                <input type="hidden" value="" name="lista" id="hid" />
                 <div class="form-group">
                     <div class="row centered-form center-block">
                         <div class="col-md-3">
                             <label class="form-control-label" for="idProd">Código:</label>
-                            <input type="text" id="idProd" name="id" class="form-control" required />
+                            <input type="text" id="idProd" class="form-control" required />
                         </div>
                         <div class="col-md-2">
                             <label class="form-control-label" for="qtdeProd">Quantidade:</label>
-                            <input type="number" id="qtdeProd" name="quantidade" class=" form-control" min='1' required />
+                            <input type="number" id="qtdeProd" class=" form-control" min='1' required />
                         </div>
                         <div class="col-md-7">
                             <label class="form-control-label" for="produtosSalvos">Produtos Inseridos:</label>
-                            <textarea class="form-control" id="produtosSalvos" name="lista" rows="5" readonly></textarea>
+                            <textarea class="form-control" id="produtosSalvos" rows="5" readonly></textarea>
                         </div>
                     </div>
                 </div>
                 <div class="btn-group btn-group-separate">
                     <button type="button" class="btn btn-warning btn-separate" id="inserir">Inserir</button>
-                    <button type="submit" class="btn btn-primary btn-separate btn-cadastro" id="enviar">Cadastrar</button>
+                    <button type="button" class="btn btn-primary btn-separate btn-cadastro" id="enviar">Cadastrar</button>
                     <button type="button" class="btn btn-info btn-limpar">Limpar Campos</button>
                 </div>
 
