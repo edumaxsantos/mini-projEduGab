@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 24-Dez-2016 às 00:59
+-- Generation Time: 26-Dez-2016 às 06:37
 -- Versão do servidor: 5.7.14
--- PHP Version: 7.0.10
+-- PHP Version: 5.6.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -28,10 +28,9 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `vendas` (
   `id_venda` int(11) NOT NULL,
-  `id_produto` varchar(11) NOT NULL,
   `data` date NOT NULL,
-  `quantidade_venda` int(11) NOT NULL,
-  `preco_total` int(11) NOT NULL
+  `preco_total` int(11) NOT NULL,
+  `lista` json NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -42,8 +41,7 @@ CREATE TABLE `vendas` (
 -- Indexes for table `vendas`
 --
 ALTER TABLE `vendas`
-  ADD PRIMARY KEY (`id_venda`),
-  ADD KEY `produtos_vendas` (`id_produto`);
+  ADD PRIMARY KEY (`id_venda`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -54,16 +52,6 @@ ALTER TABLE `vendas`
 --
 ALTER TABLE `vendas`
   MODIFY `id_venda` int(11) NOT NULL AUTO_INCREMENT;
---
--- Constraints for dumped tables
---
-
---
--- Limitadores para a tabela `vendas`
---
-ALTER TABLE `vendas`
-  ADD CONSTRAINT `Produto_venda` FOREIGN KEY (`id_produto`) REFERENCES `produtos` (`id`);
-
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
