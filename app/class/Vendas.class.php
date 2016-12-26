@@ -2,19 +2,19 @@
 
 class Vendas extends Produtos{
 	private $data_venda;
-	private $produtos_vendidos;
+	private $lista;
 	private $preco_total;
 
 	public function __construct() {
-		$this->produtos_vendidos = [];
+		$this->lista = [];
 	}
 
-	public function setProdutosVendidos($produto) {
-		$this->produtos_vendidos[] = $produto;
+	public function setLista($lista) {
+		$this->lista[] = $lista;
 	}
 
-	public function getProdutosVendidos() {
-		return $this->produtos_vendidos;
+	public function getLista() {
+		return $this->lista;
 	}
 
 	public function getDataVenda() {

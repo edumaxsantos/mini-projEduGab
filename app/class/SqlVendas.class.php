@@ -1,6 +1,6 @@
 <?php
 
-class SqlVenda extends SqlUsuario{
+class SqlVendas extends SqlUsuario{
 
 	public static $instance;
 
@@ -18,14 +18,12 @@ class SqlVenda extends SqlUsuario{
     //Metodo inserir
     public function InserirV(Vendas $vendas) {
     	try {
-    		$sql = "insert into vendas (id_produto,data,quantidade,preco_total) values (:id_produto,:data,:quantidade,:preco_total)";
+    		$sql = "insert into vendas (data,preco_total,lista) values (:data,:preco_total,:lista)";
     		$p_sql = Conexao::getInstance()->prepare($sql);
 
-    		$p_sql->bindValue(":id_produto", $vendas->getId());
-            $p_sql->bindValue(":data", $vendas->getNome());
-            $p_sql->bindValue(":quantidade", $vendas->getQtdVenda());
+            $p_sql->bindValue(":data", $vendas->getDataVenda());
             $p_sql->bindValue(":preco_total", $vendas->getPrecoTotal());
-
+            $p_sql->bindValue(":lista",$vendas->getLista());
 
             return $p_sql->execute();
         }catch (Exception $e) {
