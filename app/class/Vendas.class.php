@@ -5,7 +5,7 @@ class Vendas extends Produtos{
 	private $produtos_vendidos;
 	private $preco_total;
 
-	public __construct() {
+	public function __construct() {
 		$this->produtos_vendidos = [];
 	}
 
@@ -23,13 +23,6 @@ class Vendas extends Produtos{
 
     public function setDataVenda($data_venda) {
         $this->data_venda = $data_venda;
-    }
-
-    public function getQtdVenda() {
-    	return $this->qtd_venda;
-    }
-    public function setQtdVenda($qtd_venda) {
-    	$this->qtd_venda = $qtd_venda;
     }
 
     public function getPrecoTotal() {
