@@ -67,4 +67,30 @@ $( () => {
     if (anterior.length !== 0)
       $('#produtosSalvos').val(novo + '\n' + anterior);
   });
+
+  $('#enviar').submit(function(e) {
+    e.preventDefault();
+    var textarea = $('#produtosSalvos').val();
+    var texto = textarea.replace(/Produto: /g, '');
+    texto = texto.replace(/Qtde: /g, '');
+    var linhas = texto.split('\n');
+    var dados = {};
+    for (let i = 0; i < linhas.length; i++) {
+      let linha = linhas[i];
+      let pos = linha.indexOf(' ');
+      let key = linha.substring(0, pos);
+      let value = linha.substring(pos);
+      dados[i] = {};
+      dados[i][key] = parseInt(value);
+    }
+    console.log(data);
+    $.ajax({
+      type: "POST",
+      url: "inserirVenda.php",
+      data: dados,
+      success: function() {
+        alert('enviou');
+      }
+    });
+  });
 });
