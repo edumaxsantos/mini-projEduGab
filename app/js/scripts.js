@@ -1,4 +1,10 @@
 
+
+
+
+
+
+
 function gerarID() {
   let codigo = 'COD0';
   let texto = '1234567890';
@@ -50,5 +56,15 @@ $( () => {
       $('#div-fornecedor').addClass('has-danger');
 
     }
+  });
+
+  $('#inserir').click(function () {
+    var id = $('#idProd').val();
+    var qtde = $('#qtdeProd').val();
+    var anterior = $('#produtosSalvos').val();
+    $('#produtosSalvos').val('Produto: ' + id + ' Qtde: ' + qtde);
+    var novo = $('#produtosSalvos').val();
+    if (anterior.length !== 0)
+      $('#produtosSalvos').val(novo + '\n' + anterior);
   });
 });
