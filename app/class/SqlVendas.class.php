@@ -1,5 +1,6 @@
 <?php
 
+
 class SqlVendas extends SqlUsuario{
 
 	public static $instance;
@@ -35,7 +36,7 @@ class SqlVendas extends SqlUsuario{
 	//Metodo inserir
     public function BuscarV($id) {
         try {
-            $sql = "select vendas.*,produtos.* from vendas,produtos where produtos.id = vendas.id_produto and vendas.id_venda = :id_venda";
+            $sql = "select * from vendas where vendas.id_venda = :id_venda";
             $p_sql = Conexao::getInstance()->prepare($sql);
             $p_sql->bindValue(":id_venda", $id);
             $p_sql->execute();
@@ -56,16 +57,11 @@ class SqlVendas extends SqlUsuario{
 
 	private function populaUsuarioV($row) {
         $venda = new Vendas;
-        $venda->setNome($row['nome']);
-        $venda->setCategoria($row['categoria']);
-        $venda->setQtd($row['quantidade']);
-        $venda->setFornecedor($row['fornecedor']);
-        $venda->setPreco($row['preco']);
-        $venda->setDataCompra($row['data_compra']);
-        $venda->setDataVenda($row['data']);
-        $venda->setQtdVenda($row['quantidade_venda']);
+
+        $venda->setDataVenda(dataBr($row['data']));
+        $venda->setLista($row['lista']);
         $venda->setPrecoTotal($row['preco_total']);
-        return $produto;
+        return $venda;
     }
 }
 ?>
