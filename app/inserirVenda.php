@@ -15,6 +15,8 @@ $lista = str_replace("\\", "", $lista);
 var_dump($lista);
 $lista =json_decode($lista);
 var_dump($lista);
+
+// para acessar um objeto especifico
 var_dump($lista->{'1'});
 //calcula preco final
 $num = count($lista);

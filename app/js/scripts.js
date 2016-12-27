@@ -1,5 +1,29 @@
 
 
+const MenuComponent = Vue.extend({
+  template: `<nav class="navbar navbar-dark bg-inverse" role="navigation">
+      <ul class="nav navbar-nav">
+          <li class="nav-item"><a href="index.html" class="nav-link">Início</a></li>
+          <li class="nav-item dropdown"><a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Produtos</a>
+              <div class="dropdown-menu">
+                  <a href="cadastrarProduto.html" class="dropdown-item">Cadastrar Produto</a>
+                  <a href="procurarProduto.html" class="dropdown-item">Procurar Produto</a>
+              </div>
+          </li>
+          <li class="nav-item dropdown"><a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Vendas</a>
+              <div class="dropdown-menu">
+                  <a href="realizarVenda.html" class="dropdown-item">Realizar Venda</a>
+                  <a href="consultarVenda.html" class="dropdown-item">Consultar Vendas</a>
+              </div>
+          </li>
+      </ul>
+  </nav>`
+});
+
+new Vue({
+  el: '#app',
+  components: { MenuComponent },
+});
 
 
 

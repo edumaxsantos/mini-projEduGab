@@ -9,27 +9,13 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js" integrity="sha384-BLiI7JTZm+JWlgKa0M0kGRpJbF2J8q+qreVrKBC47e3K6BW78kGLrCkeRX6I9RoK" crossorigin="anonymous"></script>
         <link href="css/style.css" rel="stylesheet" />
-        <script src="js/scripts.js"></script>
+
     </head>
 
     <body>
-        <nav class="navbar navbar-dark bg-inverse" role="navigation">
-            <ul class="nav navbar-nav">
-                <li class="nav-item"><a href="index.html" class="nav-link">Início</a></li>
-                <li class="nav-item dropdown"><a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Produtos</a>
-                    <div class="dropdown-menu">
-                        <a href="cadastrarProduto.html" class="dropdown-item">Cadastrar Produto</a>
-                        <a href="procurarProduto.html" class="dropdown-item">Procurar Produto</a>
-                    </div>
-                </li>
-                <li class="nav-item dropdown"><a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Vendas</a>
-                    <div class="dropdown-menu">
-                        <a href="#" class="dropdown-item">Realizar Venda</a>
-                        <a href="consultarVenda.html" class="dropdown-item">Consultar Vendas</a>
-                    </div>
-                </li>
-            </ul>
-        </nav>
+        <div id="app">
+            <menu-component></menu-component>
+        </div>
         <div class="container center-form col-md-6">
             <form id="form2" action="inserirVenda.php" method="POST">
                 <input type="hidden" value="" name="lista" id="hid" />
@@ -57,6 +43,8 @@
 
             </form>
         </div>
+        <script src="https://unpkg.com/vue/dist/vue.js"></script>
+        <script src="js/scripts.js"></script>
     </body>
 
 </html>
