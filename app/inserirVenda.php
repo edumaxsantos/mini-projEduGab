@@ -5,37 +5,49 @@ function __autoload ($class) {
 }
 
 // cria objetos
-$venda = new Vendas();
-$vendaSql = new SqlVendas();
+$vendas = new Vendas();
+$vendasSql = new SqlVendas();
 
 //pegar com post
 $lista = addslashes($_POST['lista']);
-var_dump($lista);
+// tirar /
 $lista = str_replace("\\", "", $lista);
-var_dump($lista);
+// tirar do formato json
 $lista =json_decode($lista);
-var_dump($lista);
-
-// para acessar um objeto especifico
-var_dump($lista->{'1'});
-//calcula preco final
-$num = count($lista);
+//tranforma em array
+$list = (array)$lista;
 $x = 0;
 $pf = 0;
-while($x > $num){
-	$vendasSql->Buscar($lista[$x][0]);
-	$p = $vendas->getPreco();
-	$pf .= $p*$lista[$x][1];
+//calcula preco final
+foreach ($list as $value) {
+	$lis = array_shift($list);
+	$l = (array)$lis;
+	foreach ($l as $key => $value) {
+		$ar[] = $l;
+		$b = $vendasSql->Buscar($key);
+		$b = (array)$b;
+		$b2 = json_encode($b);
+		$b2 = str_replace('\u0000', '', $b2);
+		$b2 = str_replace('*', '', $b2);
+		$b2 = json_decode($b2);
+		$b2 = (array)$b2;
+		$p = $b2['preco'];
+		//echo $ar[$x][$key];
+		if($p != 0)
+		$pf += $p*$ar[$x][$key];
+	}
 	$x++;
 }
+// codifica o array em json novamente
+$a = json_encode($ar);
 
 //Atribui valores ao objeto
-$venda->setLista(json_encode($lista));
-$venda->setDataVenda(date('Y-m-d'));
-$venda->setPrecoTotal($pf);
+$vendas->setLista($a);
+$vendas->setDataVenda(date('Y-m-d'));
+$vendas->setPrecoTotal($pf);
 
 //Envia para BD e retorna para outra pagina
-$return = $vendaSql->InserirV($venda);
-$teste = (substr($return, 0 ,8) ==  "SQLSTATE") ? ("<script> alert('Erro na compra, tente novamente');  </script>") : ("<script> alert('Compra realizada com sucesso!');</script>");
+$return = $vendasSql->InserirV($vendas);
+$teste = (substr($return, 0 ,8) ==  "SQLSTATE") ? ("<script> alert('Erro na compra, tente novamente'); history.back(); </script>") : ("<script> alert('Compra realizada com sucesso!' history.back(););</script>");
 echo $teste;
 ?>
