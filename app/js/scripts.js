@@ -1,5 +1,66 @@
 
 
+function procuraVendas() {
+  const id = $('#idVenda').val();
+  $.ajax({
+    type: 'POST',
+    url: 'pesquisarVenda.php',
+    data: {'id': id}
+    dataType: 'json'
+  }).done(function() {
+    alert('deu certo');
+  });
+
+}
+
+function troca(id) {
+  if (id === "idProd") {
+    $('#idVenda').attr('disabled', 'true');
+  }
+  else {
+    $('#idProd').attr('disabled', 'true');
+  }
+}
+
+function habilita() {
+  $('#idVenda').removeAttr('disabled');
+  $('#idProd').removeAttr('disabled');
+}
+
+const ProdutoComponent = Vue.extend({
+  template: `<div id="info-produtos" class="row produto">
+    <div class="row center-block">
+      <div class="col-md-8">
+        <label for="idProduto">Nome do Produto:</label>
+        <input type="text" id="nomeProduto" value="" size="30" disabled />
+      </div>
+      <div class="col-md-4">
+        <label for="nomeProduto">Quantidade:</label>
+        <input type="text" id="qtde" value="" size="4" disabled />
+      </div>
+    </div>
+  </div>`
+});
+
+const VendasCompoment = Vue.extend({
+  template: `<div id="venda" class="container center-form col-md-6">
+      <div id="info-venda" class="row center-block vendas">
+          <div class="col-md-6">
+              <label for="dataVenda">Data da Venda:</label>
+              <input type="date" id="dataVenda" disabled/>
+
+          </div>
+          <div class="col-md-6">
+              <label for="precoTotal">Preço Total:</label>
+              <input type="text" id="precoTotal" disabled/>
+          </div>
+      </div>
+      <produto-component></produto-component>
+  </div>`,
+  components: {ProdutoComponent},
+});
+
+
 const MenuComponent = Vue.extend({
   template: `<nav class="navbar navbar-dark bg-inverse" role="navigation">
       <ul class="nav navbar-nav">
@@ -13,7 +74,7 @@ const MenuComponent = Vue.extend({
           <li class="nav-item dropdown"><a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Vendas</a>
               <div class="dropdown-menu">
                   <a href="realizarVenda.html" class="dropdown-item">Realizar Venda</a>
-                  <a href="consultarVenda.html" class="dropdown-item">Consultar Vendas</a>
+                  <a href="procurarVenda.html" class="dropdown-item">Consultar Vendas</a>
               </div>
           </li>
       </ul>
@@ -22,7 +83,7 @@ const MenuComponent = Vue.extend({
 
 new Vue({
   el: '#app',
-  components: { MenuComponent },
+  components: { MenuComponent, VendasCompoment, ProdutoComponent },
 });
 
 
