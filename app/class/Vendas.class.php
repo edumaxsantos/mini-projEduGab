@@ -6,11 +6,11 @@ class Vendas extends Produtos{
 	private $preco_total;
 
 	public function __construct() {
-		$this->lista = [];
+		//$this->lista = [];
 	}
 
 	public function setLista($lista) {
-		$this->lista[] = $lista;
+		$this->lista = $lista;
 	}
 
 	public function getLista() {
