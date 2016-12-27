@@ -18,10 +18,12 @@ $lista =json_decode($lista);
 $list = (array)$lista;
 $x = 0;
 $pf = 0;
+
 //calcula preco final
 foreach ($list as $value) {
 	$lis = array_shift($list);
 	$l = (array)$lis;
+
 	foreach ($l as $key => $value) {
 		$ar[] = $l;
 		$b = $vendasSql->Buscar($key);
@@ -32,12 +34,16 @@ foreach ($list as $value) {
 		$b2 = json_decode($b2);
 		$b2 = (array)$b2;
 		$p = $b2['preco'];
-		//echo $ar[$x][$key];
 		if($p != 0)
 		$pf += $p*$ar[$x][$key];
+		$q = $b2['quantidade'] - $ar[$x][$key];
+		$vendas->setQtd($q);
+		$vendasSql->EditarQ($vendas,$key);
 	}
 	$x++;
+
 }
+
 // codifica o array em json novamente
 $a = json_encode($ar);
 
@@ -48,6 +54,9 @@ $vendas->setPrecoTotal($pf);
 
 //Envia para BD e retorna para outra pagina
 $return = $vendasSql->InserirV($vendas);
-$teste = (substr($return, 0 ,8) ==  "SQLSTATE") ? ("<script> alert('Erro na compra, tente novamente'); history.back(); </script>") : ("<script> alert('Compra realizada com sucesso!' history.back(););</script>");
+
+$teste = (substr($return, 0 ,8) ==  "SQLSTATE") ? ("<script> alert('Erro na compra, tente novamente'); history.back(); </script>") : ("<script> alert('Compra realizada com sucesso!'); history.back();</script>");
+
 echo $teste;
+
 ?>
