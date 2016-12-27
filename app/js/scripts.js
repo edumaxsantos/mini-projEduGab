@@ -5,7 +5,7 @@ function procuraVendas() {
   $.ajax({
     type: 'POST',
     url: 'pesquisarVenda.php',
-    data: {'id': id}
+    data: {'id': id},
     dataType: 'json'
   }).done(function() {
     alert('deu certo');
