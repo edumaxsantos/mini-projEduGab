@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+    <head>
+        <meta charset="utf-8">
+        <title>Projeto de Vendas - Consultar Vendas</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js" integrity="sha384-BLiI7JTZm+JWlgKa0M0kGRpJbF2J8q+qreVrKBC47e3K6BW78kGLrCkeRX6I9RoK" crossorigin="anonymous"></script>
+        <link href="css/style.css" rel="stylesheet" />
+    </head>
+
+    <body>
+        <div id="app">
+            <menu-component></menu-component>
+            <div class="container center-form col-md-6">
+                <div class="form-group">
+                    <div class="row centered-form center-block">
+                        <div class="col-md-6">
+                            <label for="idVenda">Código da Venda:</label>
+                            <input type="text" id="idVenda" name="idV" class="form-control" required />
+                        </div>
+                        <div class="col-md-6">
+                            <div class="btn-group btn-group-separate middle">
+                                <button type="button" class="btn btn-primary btn-separate btn-cadastro" onclick="procuraVendas();">Buscar</button>
+                                <button type="button" class="btn btn-info btn-limpar">Limpar Campos</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <vendas-compoment>
+            </vendas-compoment>
+        </div>
+        <script src="https://unpkg.com/vue/dist/vue.js"></script>
+        <script src="js/scripts.js"></script>
+    </body>
+
+</html>
