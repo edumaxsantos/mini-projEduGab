@@ -58,7 +58,7 @@ class SqlVendas extends SqlUsuario{
 	private function populaUsuarioV($row) {
         $venda = new Vendas;
 
-        $venda->setDataVenda(dataBr($row['data']));
+        $venda->setDataVenda($row['data']);
         $venda->setLista($row['lista']);
         $venda->setPrecoTotal($row['preco_total']);
         return $venda;
