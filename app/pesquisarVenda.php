@@ -14,10 +14,20 @@ $id = addslashes($_REQUEST['id']);
 //Faz o select e mostra valores
 $buscar = $vendasSql->BuscarV($id);
 if($buscar){
-	$ar = (array)$buscar;
-	//$json = json_encode($ar);
+	$t = $buscar->getLista();
+	$x = json_decode($t);
+	foreach ($x as $key => $value) {
+		$obj = $x[$key];
+		$v = get_object_vars($obj);
+		//$k = $t[$key];
+		$k = key($v);
+		$b = $vendasSql->Buscar($k);
+		$n[] = $b->getNome(); 
 
-	//echo str_replace('"', '', substr($json, strripos($json, 'Vendaslista":"['), strstr($json, ']","Vendaspreco_total"')));
+	}
+	$m = json_encode($n);
+	$buscar->setNome($m);
+	$ar = (array)$buscar;
 	$json = json_encode($ar);
 	$json = str_replace('\u0000', '', $json);
 	$json = str_replace('*', '', $json);
