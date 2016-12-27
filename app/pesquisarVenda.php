@@ -15,10 +15,15 @@ $id = addslashes($_REQUEST['id']);
 $buscar = $vendasSql->BuscarV($id);
 if($buscar){
 	$ar = (array)$buscar;
+	//$json = json_encode($ar);
+
+	//echo str_replace('"', '', substr($json, strripos($json, 'Vendaslista":"['), strstr($json, ']","Vendaspreco_total"')));
 	$json = json_encode($ar);
 	$json = str_replace('\u0000', '', $json);
 	$json = str_replace('*', '', $json);
 	$json = str_replace('\\', '', $json);
+	$json = str_replace(':"[', ':[', $json);
+	$json = str_replace('}]",', '}],', $json);
 	echo $json;
 }
 else{
