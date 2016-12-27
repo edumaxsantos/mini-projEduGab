@@ -72,6 +72,22 @@ class SqlUsuario {
             }
    	}
 
+    //Medtodo update quantidade
+    public function EditarQ(Produtos $produto,$id) {
+        try {
+            $sql = "update produtos set quantidade = :quantidade where id = :id";
+
+            $p_sql = Conexao::getInstance()->prepare($sql);
+
+            $p_sql->bindValue(":quantidade", $produto->getQtd());
+            $p_sql->bindValue(":id", $id);
+
+            return $p_sql->execute();
+        } catch (Exception $e) {
+              //display custom message
+              return $e->getMessage();
+            }
+    }
    	//Medtodo inserir
    	public function Deletar($id) {
         try {
