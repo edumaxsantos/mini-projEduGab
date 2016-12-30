@@ -33,7 +33,7 @@ if($buscar){
 	$json = str_replace('*', '', $json);
 	$json = str_replace('\\', '', $json);
 	$json = str_replace(':"[', ':[', $json);
-  $json = str_replace(']"', ']', $json);
+  	$json = str_replace(']"', ']', $json);
 	$json = str_replace('}]",', '}],', $json);
 	echo $json;
 }
