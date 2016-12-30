@@ -1,17 +1,4 @@
-
-
-function procuraVendas() {
-  const id = $('#idVenda').val();
-  $.ajax({
-    type: 'POST',
-    url: 'pesquisarVenda.php',
-    data: {'id': id},
-    dataType: 'json'
-  }).done(function() {
-    alert('deu certo');
-  });
-
-}
+var LISTA = [];
 
 function troca(id) {
   if (id === "idProd") {
@@ -27,41 +14,46 @@ function habilita() {
   $('#idProd').removeAttr('disabled');
 }
 
-const ProdutoComponent = Vue.extend({
+Vue.component('produto-component', {
   template: `<div id="info-produtos" class="row produto">
     <div class="row center-block">
-      <div class="col-md-8">
-        <label for="idProduto">Nome do Produto:</label>
-        <input type="text" id="nomeProduto" value="" size="30" disabled />
+      <div class="col-md-3">
+        <label for="codProd">Código:</label>
+        <input type="text" id="codProd" :value="produto[0]" size= "12" disabled />
       </div>
-      <div class="col-md-4">
-        <label for="nomeProduto">Quantidade:</label>
-        <input type="text" id="qtde" value="" size="4" disabled />
+      <div class="col-md-6">
+        <label for="nomeProduto">Nome do Produto:</label>
+        <input type="text" id="nomeProduto" :value="produto[1]" size="30" disabled />
+      </div>
+      <div class="col-md-3">
+        <label for="qtde">Quantidade:</label>
+        <input type="text" id="qtde" :value="produto[2]" size="10" disabled />
       </div>
     </div>
-  </div>`
+  </div>`,
+  props: ['produto']
 });
 
-const VendasCompoment = Vue.extend({
+Vue.component('vendas-component', {
   template: `<div id="venda" class="container center-form col-md-6">
       <div id="info-venda" class="row center-block vendas">
-          <div class="col-md-6">
+          <div class="col-md-4">
               <label for="dataVenda">Data da Venda:</label>
               <input type="date" id="dataVenda" disabled/>
 
           </div>
-          <div class="col-md-6">
+          <div class="col-md-4">
               <label for="precoTotal">Preço Total:</label>
               <input type="text" id="precoTotal" disabled/>
           </div>
       </div>
-      <produto-component></produto-component>
+      <produto-component v-for="prod in produtos" :produto="prod"></produto-component>
   </div>`,
-  components: {ProdutoComponent},
+  props: ['produtos']
 });
 
 
-const MenuComponent = Vue.extend({
+Vue.component('menu-component', {
   template: `<nav class="navbar navbar-dark bg-inverse" role="navigation">
       <ul class="nav navbar-nav">
           <li class="nav-item"><a href="index.html" class="nav-link">Início</a></li>
@@ -83,10 +75,65 @@ const MenuComponent = Vue.extend({
 
 new Vue({
   el: '#app',
-  components: { MenuComponent, VendasCompoment, ProdutoComponent },
+  data: {
+    lista: []
+  },
+  methods: {
+    procurar() {
+      procuraVendas();
+      console.log(LISTA);
+      this.lista = LISTA;
+      /*const dados = procuraVendas();
+      console.log("DADOS = ", dados);
+      console.log("tamanho = ", dados.length);
+      for (let i = 0; i < 2; i++) {
+        console.log(dados[i]);
+      }*/
+    }
+  }
 });
 
 
+function procuraVendas() {
+  const idV = $('#idVenda').val();
+
+  var request = $.ajax({
+    type: 'POST',
+    url: 'pesquisarVenda.php',
+    data: {id: idV},
+    dataType: 'json'
+  });
+  request.done(function(dados) {
+    //console.log("dados puros: ", dados);
+    $('#dataVenda').val(dados["Vendasdata_venda"]);
+    $('#precoTotal').val(dados["Vendaspreco_total"]);
+    const nomesProd = dados.nome;
+    const produtos = dados["Vendaslista"];
+    let codProd = [];
+    //console.log("produtos = ", produtos);
+
+    //console.log(produtos);
+    let count = 0, lista = [];
+    for (let prod in produtos) {
+      const key = Object.keys(produtos[prod]);
+      const obj = produtos[prod];
+      codProd[count] = key[0];
+      //console.log(obj[key]);
+      lista[count] = [];
+      lista[count][0] = key[0];
+      lista[count][1] = nomesProd[count];
+      lista[count][2] = obj[key];
+      count++;
+    }
+    //console.log("LISTA F = ", lista);
+    LISTA = lista;
+    console.log("LISTA =", LISTA);
+
+  });
+  request.fail(function(jqXHR,textStatus,errorThrown) {
+    alert('deu errado lul ' + textStatus + ' ' + errorThrown);
+  });
+}
 
 
 
