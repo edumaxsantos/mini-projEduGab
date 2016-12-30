@@ -63,6 +63,14 @@ class Produtos {
     public function setPreco($preco) {
         $this->preco = $preco;
     }
+    public function unTudo(){
+        unset($this->categoria);
+        unset($this->id);
+        unset($this->quantidade);
+        unset($this->data_compra);
+        unset($this->fornecedor);
+        unset($this->preco);
+    }
 }
 
 
