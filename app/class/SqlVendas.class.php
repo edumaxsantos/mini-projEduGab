@@ -60,8 +60,15 @@ class SqlVendas extends SqlUsuario{
 
         $venda->setDataVenda($row['data']);
         $venda->setLista($row['lista']);
-        $venda->setPrecoTotal($row['preco_total']);
+        $venda->setPrecoTotal($row['preco_total']); 
+        if(empty($venda->getId())){
+        $venda->unTudo();
+        }
         return $venda;
     }
+   /* private function destroi(Vendas $venda){
+        unset($venda->getCategoria());
+        return;
+    }*/
 }
 ?>
