@@ -22,7 +22,7 @@ if($buscar){
 		//$k = $t[$key];
 		$k = key($v);
 		$b = $vendasSql->Buscar($k);
-		$n[] = $b->getNome(); 
+		$n[] = $b->getNome();
 
 	}
 	$m = json_encode($n);
@@ -33,6 +33,7 @@ if($buscar){
 	$json = str_replace('*', '', $json);
 	$json = str_replace('\\', '', $json);
 	$json = str_replace(':"[', ':[', $json);
+  $json = str_replace(']"', ']', $json);
 	$json = str_replace('}]",', '}],', $json);
 	echo $json;
 }
