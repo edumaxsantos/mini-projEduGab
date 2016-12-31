@@ -19,19 +19,22 @@ Vue.component('produto-component', {
     <div class="row center-block">
       <div class="col-md-3">
         <label for="codProd">Código:</label>
-        <input type="text" id="codProd" :value="produto[0]" size= "12" disabled />
+        <input type="text" id="codProd" :value="prod[0]" size= "12" disabled />
       </div>
       <div class="col-md-6">
         <label for="nomeProduto">Nome do Produto:</label>
-        <input type="text" id="nomeProduto" :value="produto[1]" size="30" disabled />
+        <input type="text" id="nomeProduto" :value="prod[1]" size="30" disabled />
       </div>
       <div class="col-md-3">
         <label for="qtde">Quantidade:</label>
-        <input type="text" id="qtde" :value="produto[2]" size="10" disabled />
+        <input type="text" id="qtde" :value="prod[2]" size="10" disabled />
       </div>
     </div>
   </div>`,
-  props: ['produto']
+  props: ['produto'],
+  data: function() {
+    return {prod: this.produto};
+  }
 });
 
 Vue.component('vendas-component', {
@@ -49,7 +52,13 @@ Vue.component('vendas-component', {
       </div>
       <produto-component v-for="prod in produtos" :produto="prod"></produto-component>
   </div>`,
-  props: ['produtos']
+  props: ['produtos'],
+  watch: {
+    produtos: function() {
+      console.log("AQUI MUDOU TBM");
+      console.log(this.produtos);
+    }
+  }
 });
 
 
@@ -73,7 +82,7 @@ Vue.component('menu-component', {
   </nav>`
 });
 
-new Vue({
+var vue = new Vue({
   el: '#app',
   data: {
     lista: []
@@ -81,14 +90,18 @@ new Vue({
   methods: {
     procurar() {
       procuraVendas();
-      console.log(LISTA);
-      this.lista = LISTA;
-      /*const dados = procuraVendas();
-      console.log("DADOS = ", dados);
-      console.log("tamanho = ", dados.length);
-      for (let i = 0; i < 2; i++) {
-        console.log(dados[i]);
-      }*/
+      setTimeout(function() {
+        console.log( "AQUI DENTRO = ", LISTA);
+      }, 1000);
+      this.lista = LISTA.slice();
+
+      //console.log(LISTA);
+      //this.lista = LISTA;
+    }
+  },
+  watch: {
+    lista: function() {
+      console.log("LISTA MUDOU");
     }
   }
 });
@@ -101,7 +114,8 @@ function procuraVendas() {
     type: 'POST',
     url: 'pesquisarVenda.php',
     data: {id: idV},
-    dataType: 'json'
+    dataType: 'json',
+    async: false
   });
   request.done(function(dados) {
     //console.log("dados puros: ", dados);
@@ -125,9 +139,7 @@ function procuraVendas() {
       lista[count][2] = obj[key];
       count++;
     }
-    //console.log("LISTA F = ", lista);
-    LISTA = lista;
-    console.log("LISTA =", LISTA);
+    LISTA = lista.slice();
 
   });
   request.fail(function(jqXHR,textStatus,errorThrown) {
